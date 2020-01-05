@@ -7,7 +7,7 @@ RUN pacman -Syu --needed --noconfirm
 RUN pacman -S base base-devel --needed --noconfirm
 RUN curl -s https://blackarch.org/strap.sh | sed 's|  check_internet|  #check_internet|' | sh
 RUN pacman-key --populate blackarch archlinux
-RUN pacman -Sy --noconfirm --needed zsh git wget vim nano gdb python python-pip binutils openssl libffi
+RUN pacman -Sy --noconfirm --needed zsh git wget vim nano gdb python python-pip binutils openssl libffi python2-paramiko python-paramiko
 RUN pacman -Sy --noconfirm --needed nmap nikto wfuzz dirb openssh sshpass openvpn metasploit exploitdb mitmproxy binwalk seclists
 RUN pacman -Sy --noconfirm --needed net-tools zip unrar sslsplit sqlmap john hydra padbuster stegdetect stegsolve steghide perl-image-exiftool masscan xsser dirbuster python-shodan
 RUN wget https://raw.githubusercontent.com/evyatarmeged/stegextract/master/stegextract -O /usr/bin/stegextract && chmod +x /usr/bin/stegextract
