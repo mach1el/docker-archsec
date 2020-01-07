@@ -15,6 +15,7 @@ RUN systemctl start postgresql &&\
     psql --command "CREATE USER pis WITH SUPERUSER PASSWORD 'unknown';" &&\
     initdb -D /var/lib/postgres/data &&\
     initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data
+USER root
 RUN wget https://raw.githubusercontent.com/evyatarmeged/stegextract/master/stegextract -O /usr/bin/stegextract &&\
     chmod +x /usr/bin/stegextract
 RUN wget https://gist.githubusercontent.com/t7hm1/406bde2c95e3ac3d1c0dac22d7f90fe6/raw/05883e0d1b5b8e685944d8295e6ba497c38a8324/start_smb.sh -O /usr/bin/startsmb &&\
