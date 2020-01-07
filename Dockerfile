@@ -17,8 +17,12 @@ RUN wget https://gist.githubusercontent.com/t7hm1/406bde2c95e3ac3d1c0dac22d7f90f
 RUN pip install impacket stegcracker -U --force-reinstall
 RUN git clone https://github.com/t7hm1/impacket_scripts.git /root/.impacket_scripts && chmod +x /root/.impacket_scripts/*
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-RUN mkdir /root/.msf4/
-RUN cp /usr/share/metasploit/database.yml.sample /root/.msf4/database.yml
+RUN mkdir /root/.msf4
+RUN mkdir /run/postgresql
+RUN chown -R postgres:postgres /run/postgresql
+RUN su - postgres -c 'initdb -D /var/lib/postgres/data'
+RUN su - postgres -c 'pg_ctl -D /var/lib/postgres/data start'
+RUN cp /opt/metasploit/config/database.yml.example /root/.msf4/database.yml
 COPY .zshrc /root/
 COPY .profile /root/
 CMD ["/bin/zsh"]
