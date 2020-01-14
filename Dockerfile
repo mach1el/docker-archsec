@@ -9,7 +9,7 @@ RUN pacman -S base base-devel --needed --noconfirm
 RUN pacman -Sy --noconfirm net-tools zip unrar sslsplit sqlmap john hydra\
  zsh git wget vim nano gdb python python-pip python2 python2-pip\
  binutils openssl libffi python2-paramiko python-paramiko mlocate\
- nmap nikto openssh sshpass openvpn\
+ nmap nikto openssh sshpass openvpn samba smbclient\
  metasploit exploitdb mitmproxy binwalk gnu-netcat
 
 RUN wget https://raw.githubusercontent.com/evyatarmeged/stegextract/master/stegextract -O /usr/bin/stegextract &&\
