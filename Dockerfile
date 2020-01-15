@@ -18,9 +18,6 @@ RUN wget https://raw.githubusercontent.com/evyatarmeged/stegextract/master/stege
 RUN wget https://raw.githubusercontent.com/AonCyberLabs/PadBuster/master/padBuster.pl -O /usr/bin/padbuster &&\
     chmod +x /usr/bin/padbuster
 
-RUN wget https://gist.githubusercontent.com/t7hm1/406bde2c95e3ac3d1c0dac22d7f90fe6/raw/05883e0d1b5b8e685944d8295e6ba497c38a8324/start_smb.sh -O /usr/bin/startsmb &&\
-	chmod +x /usr/bin/startsmb
-
 RUN git clone https://github.com/danielmiessler/SecLists.git /usr/share/seclists
 
 RUN pip install impacket stegcracker shodan -U --force-reinstall
