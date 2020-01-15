@@ -9,7 +9,7 @@ RUN pacman -S base base-devel --needed --noconfirm
 RUN pacman -Sy --noconfirm net-tools zip unrar sslsplit sqlmap john hydra\
  zsh git wget vim nano gdb python python-pip python2 python2-pip\
  binutils openssl libffi python2-paramiko python-paramiko mlocate\
- nmap nikto openssh sshpass openvpn samba smbclient\
+ nmap nikto openssh sshpass openvpn samba smbclient openldap\
  metasploit exploitdb mitmproxy binwalk gnu-netcat
 
 RUN wget https://raw.githubusercontent.com/evyatarmeged/stegextract/master/stegextract -O /usr/bin/stegextract &&\
@@ -37,7 +37,7 @@ RUN rm -rf /tmp/yay &&\
 	yes | sudo -u yay makepkg -sci &&\
 	cd /root/
 
-RUN sudo -u yay yay -S --overwrite='*' stegsolve steghide perl-image-exiftool masscan dirbuster wfuzz dirb jre11-openjdk --noconfirm
+RUN sudo -u yay yay -S --overwrite='*' enum4linux stegsolve steghide perl-image-exiftool masscan dirbuster wfuzz dirb jre11-openjdk --noconfirm
 
 COPY .zshrc /root/
 COPY .profile /root/
