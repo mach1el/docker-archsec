@@ -7,10 +7,12 @@ RUN pacman -Syu --needed --noconfirm
 RUN pacman -S base base-devel --needed --noconfirm
 
 RUN pacman -Sy --noconfirm net-tools zip unrar sslsplit sqlmap john hydra\
- zsh git wget vim nano gdb python python-pip python2 python2-pip\
+ zsh git wget vim nano gdb python python-pip python2 python2-pip rpcbind\
  binutils openssl libffi python2-paramiko python-paramiko mlocate\
  nmap nikto openssh sshpass openvpn samba smbclient openldap\
  metasploit exploitdb mitmproxy binwalk gnu-netcat
+
+RUN wget https://raw.githubusercontent.com/samba-team/samba/master/examples/smb.conf.default -O /etc/samba/smb.conf
 
 RUN wget https://raw.githubusercontent.com/evyatarmeged/stegextract/master/stegextract -O /usr/bin/stegextract &&\
 	chmod +x /usr/bin/stegextract
@@ -20,6 +22,7 @@ RUN wget https://raw.githubusercontent.com/AonCyberLabs/PadBuster/master/padBust
 
 RUN git clone https://github.com/danielmiessler/SecLists.git /usr/share/seclists
 
+RUN gem install evil-winrm
 RUN pip install impacket stegcracker shodan -U --force-reinstall
 RUN git clone https://github.com/t7hm1/impacket_scripts.git /root/.impacket_scripts &&\ 
 chmod +x /root/.impacket_scripts/*
@@ -34,7 +37,7 @@ RUN rm -rf /tmp/yay &&\
 	yes | sudo -u yay makepkg -sci &&\
 	cd /root/
 
-RUN sudo -u yay yay -S --overwrite='*' enum4linux stegsolve steghide perl-image-exiftool masscan dirbuster wfuzz dirb jre11-openjdk --noconfirm
+RUN sudo -u yay yay -S --overwrite='*' smbmap enum4linux stegsolve steghide perl-image-exiftool masscan dirbuster wfuzz dirb jre11-openjdk --noconfirm
 
 COPY .zshrc /root/
 COPY .profile /root/
