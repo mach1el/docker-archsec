@@ -41,4 +41,5 @@ RUN sudo -u yay yay -S --overwrite='*' smbmap enum4linux stegsolve steghide perl
 
 COPY .zshrc /root/
 COPY .profile /root/
+RUN source /root/.profile
 CMD ["/bin/zsh"]
