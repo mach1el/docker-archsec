@@ -24,12 +24,10 @@ RUN git clone https://github.com/danielmiessler/SecLists.git /usr/share/seclists
 
 RUN gem install evil-winrm
 RUN pip install impacket stegcracker shodan -U --force-reinstall
-RUN git clone https://github.com/t7hm1/impacket_scripts.git /root/.impacket_scripts &&\ 
-chmod +x /root/.impacket_scripts/*
 
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-RUN chmod 640 /etc/sudoers && echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && chmod 440 /etc/sudoers && useradd -m -p123 -G wheel yay
+RUN chmod 640 /etc/sudoers && echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && chmod 440 /etc/sudoers && useradd -m -pyay -G wheel yay
 RUN rm -rf /tmp/yay &&\
 	sudo -u yay git clone https://aur.archlinux.org/yay.git /tmp/yay &&\
 	cd /tmp/yay &&\
@@ -40,6 +38,5 @@ RUN rm -rf /tmp/yay &&\
 RUN sudo -u yay yay -S --overwrite='*' smbmap enum4linux stegsolve steghide perl-image-exiftool masscan dirbuster wfuzz dirb jre11-openjdk --noconfirm
 
 COPY .zshrc /root/
-COPY .profile /root/
-RUN source /root/.profile
+ENV PATH="${PATH}:/root/.gem/ruby/2.7.0/bin"
 CMD ["/bin/zsh"]
