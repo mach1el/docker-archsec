@@ -35,8 +35,9 @@ RUN rm -rf /tmp/yay &&\
 	yes | sudo -u yay makepkg -sci &&\
 	cd /root/
 
-RUN sudo -u yay yay -S --overwrite='*' gobuster smbmap enum4linux stegsolve steghide perl-image-exiftool masscan dirbuster wfuzz dirb jre11-openjdk --noconfirm
+RUN sudo -u yay yay -S --overwrite='*' smbmap enum4linux stegsolve steghide perl-image-exiftool masscan dirbuster wfuzz dirb jre11-openjdk --noconfirm
+RUN go get github.com/OJ/gobuster
 
 COPY .zshrc /root/
-ENV PATH="${PATH}:/root/.gem/ruby/2.7.0/bin"
+ENV PATH="${PATH}:/root/.gem/ruby/2.7.0/bin:/root/go/bin"
 CMD ["/bin/zsh"]
