@@ -23,7 +23,7 @@ RUN wget https://raw.githubusercontent.com/AonCyberLabs/PadBuster/master/padBust
 RUN git clone https://github.com/danielmiessler/SecLists.git /usr/share/seclists
 
 RUN gem install evil-winrm
-RUN pip install impacket stegcracker shodan -U --force-reinstall
+RUN pip install impacket stegcracker shodan BeautifulSoup4 -U --force-reinstall
 
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
